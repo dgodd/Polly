@@ -1,6 +1,16 @@
 ﻿namespace Polly.CircuitBreaker
 {
-    internal class HealthCount
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    public interface IHealthCount
+    {
+        int Successes { get; }
+        int Failures { get; }
+        int Total { get; }
+        long StartedAt { get; }
+    }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
+    internal class HealthCount : IHealthCount
     {
         public int Successes { get; set; }
 

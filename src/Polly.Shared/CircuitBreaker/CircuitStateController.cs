@@ -50,6 +50,14 @@ namespace Polly.CircuitBreaker
             }
         }
 
+        public IHealthMetrics HealthMetrics
+        {
+            get
+            {
+                return new SingleHealthMetrics(_durationOfBreak);
+            }
+        }
+
         public Exception LastException
         {
             get
@@ -77,6 +85,14 @@ namespace Polly.CircuitBreaker
             get
             {
                 return SystemClock.UtcNow() < _blockedTill;
+            }
+        }
+
+        public HealthCount HealthCount
+        {
+            get
+            {
+                throw new NotImplementedException();
             }
         }
 
