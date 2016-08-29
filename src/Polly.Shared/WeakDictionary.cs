@@ -29,9 +29,10 @@ namespace Polly.Shared
                 if (pair.Value.TryGetTarget(out value))
                 {
                     yield return new KeyValuePair<K,V>(pair.Key, value);
-                //} else
-                //{
-                //    list.Remove(pair);
+                }
+                else
+                {
+                    list.Remove(pair);
                 }
             }
         }

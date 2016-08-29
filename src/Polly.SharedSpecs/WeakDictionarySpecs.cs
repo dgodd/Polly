@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -53,6 +54,22 @@ namespace Polly.Specs
             fred = new object();
             dict.Add("fred", fred);
             Assert.Equal(dict.All().Count(), 1);
+        }
+
+        [Fact]
+        public void CanHaveMultipleKeyValues()
+        {
+            var dict = new Shared.WeakDictionary<string, object>();
+            var obj = new object();
+            dict.Add("fred", obj);
+            dict.Add("jane", obj);
+            dict.Add("jim", obj);
+
+            var actual = dict.All().Select(pair => pair.Key);
+            Assert.Contains("fred", actual);
+            Assert.Contains("bill", actual);
+            Assert.Contains("jim", actual);
+            Assert.Equal(3, actual.Count());
         }
     }
 }
