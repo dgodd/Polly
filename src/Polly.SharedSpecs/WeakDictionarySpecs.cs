@@ -67,7 +67,7 @@ namespace Polly.Specs
 
             var actual = dict.All().Select(pair => pair.Key);
             Assert.Contains("fred", actual);
-            Assert.Contains("bill", actual);
+            Assert.Contains("jane", actual);
             Assert.Contains("jim", actual);
             Assert.Equal(3, actual.Count());
         }
