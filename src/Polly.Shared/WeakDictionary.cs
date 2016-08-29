@@ -6,29 +6,29 @@ using System.Runtime.CompilerServices;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Polly.Shared
 {
-    public class WeakDictionary<K, V> where V : class
+    public class WeakDictionary<K, V>
     {
-        private HashSet<KeyValuePair<K, WeakReference<V>>> list;
+        private HashSet<KeyValuePair<K, WeakReference>> list;
 
         public WeakDictionary()
         {
-            list = new HashSet<KeyValuePair<K, WeakReference<V>>>();
+            list = new HashSet<KeyValuePair<K, WeakReference>>();
         }
 
         public void Add(K k, V v)
         {
-            list.Add(new KeyValuePair<K, WeakReference<V>>(k, new WeakReference<V>(v)));
+            list.Add(new KeyValuePair<K, WeakReference>(k, new WeakReference(v)));
         }
 
         public IEnumerable<KeyValuePair<K, V>> All()
         {
-            var cloneList = new HashSet<KeyValuePair<K, WeakReference<V>>>(list);
+            var cloneList = new HashSet<KeyValuePair<K, WeakReference>>(list);
             foreach (var pair in cloneList)
             {
-                V value;
-                if (pair.Value.TryGetTarget(out value))
+                object value = pair.Value.Target;
+                if (value != null)
                 {
-                    yield return new KeyValuePair<K,V>(pair.Key, value);
+                    yield return new KeyValuePair<K,V>(pair.Key, (V)value);
                 }
                 else
                 {
