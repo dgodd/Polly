@@ -66,5 +66,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ReadOnlyDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SystemClock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TimedLock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WeakDictionary.cs" />
   </ItemGroup>
 </Project>
