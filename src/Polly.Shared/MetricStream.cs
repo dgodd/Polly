@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Polly.Shared
 {
-    class MetricStream
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    public class MetricStream
     {
         private static readonly DateTime Jan1St1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -36,4 +37,5 @@ namespace Polly.Shared
             }
         }
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

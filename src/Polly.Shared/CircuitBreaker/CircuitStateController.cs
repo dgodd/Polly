@@ -58,6 +58,14 @@ namespace Polly.CircuitBreaker
             }
         }
 
+        public virtual HealthCount HealthCount
+        {
+            get
+            {
+                return new HealthCount();
+            }
+        }
+
         public Exception LastException
         {
             get
@@ -85,14 +93,6 @@ namespace Polly.CircuitBreaker
             get
             {
                 return SystemClock.UtcNow() < _blockedTill;
-            }
-        }
-
-        public HealthCount HealthCount
-        {
-            get
-            {
-                throw new NotImplementedException();
             }
         }
 
