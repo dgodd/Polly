@@ -7,7 +7,15 @@ namespace Polly.Shared
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class HystrixCommand
     {
-        public string type { get; set; }
+        private static readonly DateTime Jan1St1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        public HystrixCommand()
+        {
+            currentTime = (long)((DateTime.UtcNow - Jan1St1970).TotalMilliseconds);
+            rollingCountTimeout = -1;
+        }
+
+        public string type { get { return "HystrixCommand"; } }
         public string name { get; set; }
         public string group { get; set; }
         public long currentTime { get; set; }
