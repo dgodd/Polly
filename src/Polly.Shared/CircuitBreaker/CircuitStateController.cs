@@ -50,22 +50,6 @@ namespace Polly.CircuitBreaker
             }
         }
 
-        public IHealthMetrics HealthMetrics
-        {
-            get
-            {
-                return new SingleHealthMetrics(_durationOfBreak);
-            }
-        }
-
-        public virtual HealthCount HealthCount
-        {
-            get
-            {
-                return new HealthCount();
-            }
-        }
-
         public Exception LastException
         {
             get
@@ -163,6 +147,8 @@ namespace Polly.CircuitBreaker
         public abstract void OnActionFailure(DelegateResult<TResult> outcome, Context context);
 
         public abstract void OnCircuitReset(Context context);
+
+        public abstract HealthCount HealthCount { get; }       
     }
 }
 
